@@ -1,0 +1,24 @@
+<div class="well">
+	<div>
+		Tags:
+		<a class="label label-primary" [routerLink]="['/', '*', 'all']">All tags</a>
+		<span *ngFor="let tag of tags$ | async">
+			<a class="label label-default" [routerLink]="['/', tag, 'all']">{{tag}}</a>
+		</span>
+	</div>
+	<div>
+		Status:
+		<a routerLink="../all" class="label label-default">All</a>
+		<a routerLink="../completed" class="label label-success">Completed</a>
+		<a routerLink="../incomplete" class="label label-danger">Incomplete</a>
+	</div>
+</div>
+<div *ngIf="route.paramMap | async; let paramMap">
+	<todo-add-new (add)="addTodo($event)"></todo-add-new>
+	<todo-item-list
+		[todos]="todos$ | async"
+		[filterStatus]="paramMap.get('status')"
+		[filterTag]="paramMap.get('tag')"
+		(edit)="editTodo($event)"
+	></todo-item-list>
+</div>

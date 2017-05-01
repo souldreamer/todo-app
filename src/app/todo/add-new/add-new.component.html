@@ -1,0 +1,13 @@
+<div class="well form-group">
+	<label>
+		Add new
+		<input
+			class="form-control"
+			type="text"
+			(keyup.enter)="add.emit(newTodo.value); newTodo.value='';"
+			title="New todo"
+			#newTodo
+		>
+		<span class="help-block">Write todo text followed by #tags and press enter to add</span>
+	</label>
+</div>

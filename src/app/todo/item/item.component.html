@@ -1,0 +1,20 @@
+<li>
+	<div
+		*ngIf="editing; else showItem"
+	>
+		<input
+			[value]="getEditString()"
+			(keyup.enter)="valueChange.emit(todoEditor.value)"
+			(blur)="valueChange.emit(todoEditor.value)"
+			#todoEditor>
+	</div>
+	<ng-template #showItem>
+		<div
+			(dblclick)="edit.emit(true)"
+		>
+			<input type="checkbox" [checked]="completed" (change)="toggleCompleted.emit()">
+			<span [class.complete]="completed">{{content}}</span>
+			<span *ngFor="let tag of tags"> #{{tag}}</span>
+		</div>
+	</ng-template>
+</li>

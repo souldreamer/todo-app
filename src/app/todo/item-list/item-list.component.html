@@ -1,0 +1,13 @@
+<ul>
+	<todo-item
+		*ngFor="let todo of todos; trackBy: trackById"
+		[content]="todo.content"
+		[tags]="todo.tags"
+		[completed]="todo.completed"
+		[editing]="todo.editing"
+		(edit)="editTodo(todo, {editing: $event})"
+		(toggleCompleted)="editTodo(todo, {completed: !todo.completed})"
+		(valueChange)="editTodo(todo, getTodoPartialFromString($event), {editing: false})"
+	></todo-item>
+</ul>
+{{todos.length}} todos, {{getCompletedTodos().length}} completed
